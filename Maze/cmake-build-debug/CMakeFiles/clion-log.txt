@@ -1,0 +1,4 @@
+/home/dmrf/Soft/clion-2017.2.3/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/dmrf/文档/DataStructure/CourseDesign/Maze
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/dmrf/文档/DataStructure/CourseDesign/Maze/cmake-build-debug

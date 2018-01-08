@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/dmrf/文档/DataStructure/CourseDesign/Maze/MyStack.h
+iostream
+-
+
+/home/dmrf/文档/DataStructure/CourseDesign/Maze/main.cpp
+iostream
+-
+fstream
+-
+vector
+-
+cmath
+-
+MyStack.h
+/home/dmrf/文档/DataStructure/CourseDesign/Maze/MyStack.h
+

@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/dmrf/文档/DataStructure/CourseDesign/Sort/main.cpp
+iostream
+-
+fstream
+-
+stdlib.h
+-
+vector
+-
+list
+-
+queue
+-
+time.h
+-
+

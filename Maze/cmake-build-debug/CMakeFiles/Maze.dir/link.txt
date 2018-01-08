@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/Maze.dir/main.cpp.o  -o Maze 

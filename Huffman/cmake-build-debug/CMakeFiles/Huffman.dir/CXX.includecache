@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/dmrf/文档/DataStructure/CourseDesign/Huffman/BiTree.h
+queue
+-
+stack
+-
+iostream
+-
+cmath
+-
+string
+-
+fstream
+-
+
+/home/dmrf/文档/DataStructure/CourseDesign/Huffman/main.cpp
+iostream
+-
+fstream
+-
+vector
+-
+BiTree.h
+/home/dmrf/文档/DataStructure/CourseDesign/Huffman/BiTree.h
+

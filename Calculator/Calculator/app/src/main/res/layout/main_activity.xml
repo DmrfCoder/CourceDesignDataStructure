@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--结果显示框-->
+    <EditText
+        android:id="@+id/input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:gravity="right"
+        android:text="0"
+        android:textColor="#FF1493"
+        android:textSize="20sp" />
+
+    <!-- 采用TableRow的格式进行布局设计-->
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--用于显示存储结果-->
+        <TextView
+            android:id="@+id/M"
+            android:layout_width="53sp"
+            android:layout_height="wrap_content"
+            android:text="@string/mem"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <!--默认显示字符串“0”-->
+        <TextView
+            android:id="@+id/mem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <!--设置当前角度是角度还是弧度，默认是角度-->
+        <TextView
+            android:id="@+id/_drg"
+            android:layout_width="53sp"
+            android:layout_height="wrap_content"
+            android:text="  DEG"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <!--清除存储结果-->
+        <Button
+            android:id="@+id/mc"
+            android:layout_width="106sp"
+            android:layout_height="wrap_content"
+            android:width="106sp"
+            android:background="#00000000"
+            android:text="MC"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+
+        <!--清除窗口的所有内容-->
+        <Button
+            android:id="@+id/c"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:text="C"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--在角度和弧度制之间切换-->
+        <Button
+            android:id="@+id/drg"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="DRG"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+        <!--计算正弦-->
+        <Button
+            android:id="@+id/sin"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="sin"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <!--计算余弦-->
+        <Button
+            android:id="@+id/cos"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="cos"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <!--计算正切-->
+        <Button
+            android:id="@+id/tan"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="tan"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <!--计算阶乘-->
+        <Button
+            android:id="@+id/factorial"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="n!"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <!--退格键-->
+        <Button
+            android:id="@+id/bksp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="Bksp"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/seven"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="7"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/eight"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="8"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/nine"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="9"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/divide"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="÷"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/left"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="("
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/right"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text=")"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/four"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="4"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/five"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="5"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/six"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="6"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/mul"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="×"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/sqrt"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="√"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/square"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="^"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/one"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="1"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/two"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="2"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/three"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="3"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/sub"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="-"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/log"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="log"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/ln"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="ln"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/zero"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="0"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/dot"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="."
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/equal"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="="
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+        <Button
+
+            android:id="@+id/add"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="+"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="40dp" />
+
+        <Button
+            android:id="@+id/exit"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:background="#00000000"
+            android:text="EXIT"
+            android:textAllCaps="false"
+            android:textColor="#4EEE94"
+            android:textSize="20dp" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/T"
+            android:layout_width="45sp"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:text="@string/tips"
+            android:textColor="#FF1493"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:text="@string/welcomeuse"
+            android:textColor="#FF1493"
+            android:textSize="20sp" />
+    </TableRow>
+</LinearLayout>
