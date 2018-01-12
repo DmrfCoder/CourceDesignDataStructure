@@ -25,6 +25,7 @@ void ShortestPath(MGraph G);
 
 int main() {
 
+
     cout << "请输入节点个数：" << endl;
     int n;
     cin >> n;
@@ -61,6 +62,12 @@ void GetData(vector<Node> &v, int n) {
         return;
     }
 
+    Node node1;
+    node1.y = 0;
+    node1.x = 0;
+    node1.code = 0;
+    v.push_back(node1);
+
     while (!in.eof() && n > 0) {
         Node node;
         in >> node.code >> node.x >> node.y;
@@ -78,15 +85,14 @@ void GetData(vector<Node> &v, int n) {
 
 
 void Qone(MGraph &G) {
-    int len[G.vexnum + 1];
-    int road[G.vexnum + 1];
-
-    bool flag[G.vexnum + 1];
-    for (int i = 1; i <= G.vexnum; ++i) {
-        len[i] = G.arcs[1][i].adj;
+    int len[G.vexnum];
+    int road[G.vexnum];
+    bool flag[G.vexnum];
+    for (int i = 0; i < G.vexnum; ++i) {
+        len[i] = G.arcs[0][i].adj;
         flag[i] = false;
     }
-    flag[1] = true;
+    flag[0] = true;
 
 
     int min = 1000000;
@@ -96,7 +102,7 @@ void Qone(MGraph &G) {
         min = 1000000;
         index = 0;
 
-        for (int i = 1; i <= G.vexnum; ++i) {//找到从点1出发的最短边（该边一定是最短路径的一部分）
+        for (int i = 0; i < G.vexnum; ++i) {//找到从点1出发的最短边（该边一定是最短路径的一部分）
             if (len[i] < min && !flag[i] && len[i] != -1) {
                 min = len[i];
                 index = i;
@@ -108,7 +114,7 @@ void Qone(MGraph &G) {
         }
         flag[index] = true;
 
-        for (int j = 1; j <= G.vexnum; ++j) {
+        for (int j = 0; j < G.vexnum; ++j) {
             if (!flag[j] && G.arcs[index][j].adj != -1) {//如果点j没有归入最短点的集合而且点index到点j有路径
 
                 if (len[j] > len[index] + G.arcs[index][j].adj || len[j] == -1) {
@@ -128,26 +134,26 @@ void Qone(MGraph &G) {
 
     int deletenum = 0;
     cout << "最短路径结果如下：" << endl;
-    for (int k = 2; k <= si; ++k) {
+    for (int k = 1; k < si; ++k) {
 
         if (!flag[k]) {
 
 
-            cout << k - 1 << "无法实现传输,该点将被剔除" << endl;
+            cout << k << "无法实现传输,该点将被剔除" << endl;
             deletenum++;
             DeleteVex(G, k);
         } else {
-            cout << "源点到" << k - 1;
+            cout << "源点到" << k;
             cout << "最短距离为" << len[k];
             cout << "路径为：源点--";
             int temp[500];
             int is = 0;
 
-            temp[is++] = k - 1;
+            temp[is++] = k;
 
             int pr = road[k];
             while (pr != 0) {
-                temp[is++] = pr + 1;
+                temp[is++] = pr;
                 pr = road[pr];
             }
             for (int i = is - 1; i > 0; --i) {
@@ -222,9 +228,6 @@ void Prim(MGraph G) {
         flag[min_index] = true;
         int aa = a.front();
         int bb = b.front();
-        if (aa = index[f] && bb == min_index) {
-            break;
-        }
         a.push_back(index[f]);
         b.push_back(min_index);
         index.push_back(min_index);

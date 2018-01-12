@@ -79,7 +79,7 @@ bool DestroyGraph(MGraph &G) {
 //寻找图中a点的位置
 int LocateVex(MGraph G, int a) {
 
-    for (int i = 1; i <= G.vexnum; ++i) {
+    for (int i = 0; i < G.vexnum; ++i) {
 
         if (a == G.vexs[i]) {
             return i;
@@ -230,18 +230,18 @@ bool DeleteVex(MGraph &G, int v) {
         //cout << "要删除的点不存在！" << endl;
         return false;
     } else {
-        for (int j = i; j < G.vexnum; ++j) {
-            for (int k = 1; k <= G.vexnum; ++k) {
+        for (int j = i; j < G.vexnum-1; ++j) {
+            for (int k = 0; k < G.vexnum; ++k) {
                 G.arcs[j][k] = G.arcs[j + 1][k];
             }
         }
-        for (int j = i; j < G.vexnum; ++j) {
-            for (int k = 1; k <= G.vexnum; ++k) {
+        for (int j = i; j < G.vexnum-1; ++j) {
+            for (int k = 1; k <G.vexnum; ++k) {
                 G.arcs[k][j] = G.arcs[k][j + 1];
             }
         }
 
-        for (int l = i; l < G.vexnum; ++l) {
+        for (int l = i; l < G.vexnum-1; ++l) {
             G.vexs[l] = G.vexs[l + 1];
         }
         G.vexnum--;
@@ -484,43 +484,36 @@ bool CreateUDG(MGraph &G) {
 bool CreateUDN(MGraph &G, vector<Node> v) {
 
 
-    G.vexnum = v.size() + 1;
+    G.vexnum = v.size();
     G.arcnum = G.vexnum * G.vexnum;
 
 
-    G.vexs[1] = 0;
-    for (int i = 2; i <= G.vexnum; ++i) {
-        G.vexs[i] = v[i - 2].code;
+    for (int i = 0; i < G.vexnum; ++i) {
+        G.vexs[i] = v[i].code;
     }
 
     //初始化邻接矩阵
-    for (int j = 1; j <= G.vexnum; ++j) {
-        for (int i = 1; i <= G.vexnum; ++i) {
+    for (int j = 0; j < G.vexnum; ++j) {
+        for (int i = 0; i < G.vexnum; ++i) {
             G.arcs[j][i].adj = -1;
         }
     }
 
 
-    for (int l = 1; l <= G.vexnum; ++l) {
-        for (int i = 1; i <= G.vexnum; ++i) {
-            if (l == 1) {
-                double val;
-                val = sqrt(pow(v[i].x, 2) + pow(v[i].y, 2));
-                if (val <= 10 && val > 0) {
-                    G.arcs[l][i].adj = val;
-                }
-            } else {
-                double val;
-                val = sqrt(pow(v[i].x - v[l].x, 2) + pow(v[i].y - v[l].y, 2));
-                if (val <= 10 && val > 0) {
+    for (int l = 0; l < G.vexnum; ++l) {
+        for (int i = 0; i < G.vexnum; ++i) {
 
-                    G.arcs[l][i].adj = val;
-                }
+            double val;
+            val = sqrt(pow(v[i].x - v[l].x, 2) + pow(v[i].y - v[l].y, 2));
+            if (val <= 10 && val > 0) {
+
+                G.arcs[l][i].adj = val;
             }
+
         }
     }
 
-    G.vexnum = v.size() + 1;
+    G.vexnum = v.size();
     G.arcnum = G.vexnum * G.vexnum;
 
     cout << "创建UDN成功~" << endl;

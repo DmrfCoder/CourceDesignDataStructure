@@ -5,7 +5,7 @@
 
 
 using namespace std;
-
+string testjjj;
 typedef struct {
     char m;
     int n;
@@ -135,23 +135,39 @@ void DeCode() {//解码
 
 
     for (int l = 0; l < cc.size(); ++l) {
-        cout << (int) cc[l] << " ";
+        //cout << (int) cc[l] << " ";
         vector<int> con;
-        con = CharToNumber(cc[l]);
-        for (int i = 0; i < 8; ++i) {
-            if (con[i] == 0) {
+        if (l == 37) {
+            cout << "d";
+        }
+        if (cc[l] == 0) {
+            if (cc[l + 1] == 0) {
                 code_data += "0";
-            } else {
+            } else if (cc[l + 1] == 1) {
                 code_data += "1";
             }
+            for (int i = 0; i < 7; ++i) {
+                code_data += "0";
+            }
+            l++;
+        } else {
+            con = CharToNumber(cc[l]);
+            for (int i = 0; i < 8; ++i) {
+                if (con[i] == 0) {
+                    code_data += "0";
+                } else {
+                    code_data += "1";
+                }
+            }
         }
+
 
     }
 
 
-    cout << endl << "j:" << cc.size() - 1 << endl;
-    cout << "code_data:" << endl;
-    cout << code_data << endl;
+    // cout << endl << "j:" << cc.size() - 1 << endl;
+    //  cout << "code_data:" << endl;
+  //  cout << code_data;
 
     vector<string> val;
     for (int j = 0; j <= 256; ++j) {
@@ -185,8 +201,23 @@ void DeCode() {//解码
     cout << endl;
     string tim_str;
     string fi = "";
-    for (int k = 0; k < code_data.size(); ++k) {
-        tim_str += code_data[k];
+    // code_data=testjjj;
+    string gs = "";
+    for (int m = 0; m <= code_data.size() - 10; ++m) {
+        gs += code_data[m];
+    }
+    // cout<<"gs:"<<gs.size()<<endl;
+    cout << gs << endl;
+
+    for (int i1 = 0; i1 < gs.size(); ++i1) {
+        if (gs[i1] != testjjj[i1]) {
+            cout << "s";
+        }
+    }
+
+    for (int k = 0; k < gs.size(); ++k) {
+        tim_str += gs[k];
+
 
         for (int i = 0; i < val.size(); ++i) {
             if (tim_str == val[i]) {
@@ -199,7 +230,9 @@ void DeCode() {//解码
                     c = i;
                 }
 
-
+                if (k>=gs.size()-8){
+                    break;
+                }
                 fi += c;
                 fputc(c, ou);
                 tim_str = "";
@@ -218,7 +251,7 @@ void DeCode() {//解码
 vector<int> CharToNumber(char c) {//将ascill转化为二进制
     vector<int> bin;
     int n;
-    if (c < 0) {
+    if (c <= 0) {
         bin.push_back(0);
         n = -c;
     } else {
@@ -230,7 +263,7 @@ vector<int> CharToNumber(char c) {//将ascill转化为二进制
         int a;
         a = n % 2;
         n = n / 2;
-        temp[i] = (char) a;
+        temp[i] = a;
     }
 
     for (int j = 0; j <= 7; ++j) {
@@ -302,7 +335,7 @@ void DoCode() {
     cout << "finalcode:" << endl;
     cout << "size:" << finalcode.size() << endl;
 
-    cout << endl << finalcode << endl;
+    cout << finalcode;
 
     int bit[8];
     int flag_number = 0;
@@ -322,16 +355,28 @@ void DoCode() {
                        bit[5] * (int) pow(2, 2) +
                        bit[6] * (int) pow(2, 1) +
                        bit[7] * (int) pow(2, 0);
-            if (bit[0] == 0) {//0是负
-                temp *= -1;
-            }
 
-            char cs = temp;
-            fputc(cs, out);
+            if (temp == 0) {
+                if (bit[0] == 0) {
+                    fputc(0, out);
+                    fputc(0, out);
+                } else {
+                    fputc(0, out);
+                    fputc(1, out);
+                }
+            } else {
+                if (bit[0] == 0) {//0是负
+
+                    temp *= -1;
+                }
+
+                char cs = temp;
+                fputc(cs, out);
+            }
             flag_number = 0;
             for_number++;
             int t = temp;
-            cout << t << " ";
+            // cout << t << " ";
             n1++;
             if (flag_number + for_number * 8 == finalcode.size()) {
                 break;
@@ -343,6 +388,7 @@ void DoCode() {
                     temp += bit[i] * pow(2, 7 - i);
 
                 }
+
 
                 if (bit[0] == 0) {//0是负
                     temp *= -1;
@@ -365,7 +411,7 @@ void DoCode() {
     }
 
 
-    cout << endl << "编码后的总字符数为：" << n1 << endl;
+    //cout << endl << "编码后的总字符数为：" << n1 << endl;
 
 
     fflush(out);
@@ -374,7 +420,40 @@ void DoCode() {
 
     fclose(huffman);
 
+    testjjj = finalcode;
+/*
 
+    FILE *ou;
+    ou = fopen("/home/dmrf/文档/DataStructure/CourseDesign/EnCodeHuffmanData.txt", "w");
+
+    //int et=0;
+    cout << endl;
+    string tim_str;
+    for (int k = 0; k < finalcode.size(); ++k) {
+        tim_str += finalcode[k];
+
+        for (int i = 0; i < val.size(); ++i) {
+            if (tim_str == val[i]) {
+                char c;
+
+                if (i > 127) {
+                    c = i - 127;
+                    c = -c;
+                } else {
+                    c = i;
+                }
+
+
+                fputc(c, ou);
+                tim_str = "";
+                break;
+            }
+        }
+
+    }
+
+    fflush(ou);
+    fclose(ou);*/
 
 }
 

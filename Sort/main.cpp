@@ -40,9 +40,43 @@ void doSort(vector<int> v);
 
 int main() {
 
-    // getNum();
-/*
+   /* // getNum();
     vector<int> v;
+    v.push_back(456);
+    v.push_back(34);
+    v.push_back(29);
+    v.push_back(199);
+    v.push_back(5);
+    v.push_back(43);
+    v.push_back(5);
+    v.push_back(456);
+    v.push_back(34);
+    v.push_back(29);
+    v.push_back(199);
+    v.push_back(5);
+    v.push_back(43);
+    v.push_back(5);
+    v.push_back(456);
+    v.push_back(34);
+    v.push_back(29);
+    v.push_back(199);
+    v.push_back(5);
+    v.push_back(43);
+    v.push_back(5);
+    v.push_back(456);
+    v.push_back(34);
+    v.push_back(29);
+    v.push_back(199);
+    v.push_back(5);
+    v.push_back(43);
+    v.push_back(5);
+    v.push_back(456);
+    v.push_back(34);
+    v.push_back(29);
+    v.push_back(199);
+    v.push_back(5);
+    v.push_back(43);
+    v.push_back(5);
     v.push_back(456);
     v.push_back(34);
     v.push_back(29);
@@ -54,8 +88,8 @@ int main() {
     v.push_back(555);
     v.push_back(65);
     v.push_back(2);
-
-    doSort(v);*/
+*/
+   // doSort(v);
 
      ifstream in("/home/dmrf/文档/DataStructure/CourseDesign/num.txt");
      if (!in.is_open()) {
@@ -83,6 +117,10 @@ int main() {
 void doSort(vector<int> v) {
 
 
+    vector<int> ve[8];
+    for (int i = 0; i < 8; ++i) {
+        ve[i] = v;
+    }
     double Time;
     time_t end;
     time_t start;
@@ -90,14 +128,14 @@ void doSort(vector<int> v) {
 
     start = clock();
     cout << "快速排序中..." << endl;
-    QuickSort(v);
+    QuickSort(ve[0]);
     end = clock();
     Time = (end - start) / CLOCKS_PER_SEC;
     cout << "快速排序：" << Time << endl;
 
     start = clock();
     cout << "归并排序中..." << endl;
-    MSort(v);
+    MSort(ve[1]);
     end = clock();
     Time = (end - start) / CLOCKS_PER_SEC;
     cout << "归并排序：" << Time << endl;
@@ -105,14 +143,14 @@ void doSort(vector<int> v) {
 
     start = clock();
     cout << "插入排序中..." << endl;
-    InsertSort(v);
+    InsertSort(ve[2]);
     end = clock();
     Time = (end - start) / CLOCKS_PER_SEC;
     cout << "插入排序:" << Time << endl;
 
     start = clock();
     cout << "希尔排序中..." << endl;
-    ShellSort(v);
+    ShellSort(ve[3]);
     end = clock();
     Time = (end - start) / CLOCKS_PER_SEC;
     cout << "希尔排序：" << Time << endl;
@@ -120,16 +158,15 @@ void doSort(vector<int> v) {
 
     start = clock();
     cout << "冒泡排序中..." << endl;
-    BubbleSort(v);
+    BubbleSort(ve[4]);
     end = clock();
     Time = (end - start) / CLOCKS_PER_SEC;
     cout << "冒泡排序：" << Time << endl;
 
 
-
     start = clock();
     cout << "选择排序中..." << endl;
-    SelectSort(v);
+    SelectSort(ve[5]);
     end = clock();
     Time = (end - start) / CLOCKS_PER_SEC;
     cout << "选择排序：" << Time << endl;
@@ -137,7 +174,7 @@ void doSort(vector<int> v) {
 
     start = clock();
     cout << "堆排序中..." << endl;
-    HeapSort(v);
+    HeapSort(ve[6]);
     end = clock();
     Time = (end - start) / CLOCKS_PER_SEC;
     cout << "堆排序：" << Time << endl;
@@ -145,7 +182,7 @@ void doSort(vector<int> v) {
 
     start = clock();
     cout << "基数排序中..." << endl;
-    radixSort(v);
+    radixSort(ve[7]);
     end = clock();
     Time = (end - start) / CLOCKS_PER_SEC;
     cout << "基数排序：" << Time << endl;
@@ -206,10 +243,10 @@ void getNum() {
 
 
 void show(vector<int> v) {
-    /*for (int i = 0; i < v.size(); ++i) {
+    for (int i = 0; i < v.size(); ++i) {
         cout << v[i] << " ";
     }
-    cout << endl;*/
+    cout << endl;
 }
 
 /*
@@ -378,8 +415,9 @@ void SelectSort(vector<int> v) {
  */
 
 void HeapSort(vector<int> v) {
-    vector<int> n_v;
+
     int size = v.size();
+    v.push_back(0);
     for (int k = v.size(); k > 0; --k) {
         v[k] = v[k - 1];
     }
@@ -391,32 +429,33 @@ void HeapSort(vector<int> v) {
     for (int j = size; j > 1; --j) {
         int t;
         t = v[1];
-        n_v.push_back(t);
         v[1] = v[j];
         v[j] = t;
         HeapAdjust(v, 1, j - 1);
     }
-    int t = v[1];
-    n_v.push_back(t);
+
 
     /*
      * n_v即为排好序的vector
      */
-    show(n_v);
+    for (int i = 1; i < v.size(); ++i) {
+        cout << v[i] << " ";
+    }
+    cout << endl;
 }
 
 void HeapAdjust(vector<int> &v, int s, int m) {
     /*
-     * 已知v[s..m]除v[s]之外均满足堆的定义，本函数调整v[s]，使得v[s..m]成为一个大顶堆
+     * 已知v[s..m]除v[s]之外均满足堆的定义，本函数调整v[s]，使得v[s..m]成为一个小顶堆
      */
 
     int rc;
     rc = v[s];
     for (int i = 2 * s; i <= m; i = 2 * i) {
-        if (i < m && v[i] > v[i + 1]) {
-            i++;//i为较小数据的下标
+        if (i < m && v[i] < v[i + 1]) {
+            i++;//i为较大数据的下标
         }
-        if (rc <= v[i]) {
+        if (rc >= v[i]) {
             break;
         }
 

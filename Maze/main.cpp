@@ -53,7 +53,7 @@ int main() {
             if (d[j][i] == 1) {
                 cout << "*" << " ";
             } else {
-                cout << "@" << " ";
+                cout << "#" << " ";
             }
         }
         cout << endl;
@@ -134,9 +134,9 @@ int main() {
             if (d[j][i] == 1) {
                 cout << "*" << " ";
             } else if (d[j][i] == 0) {
-                cout << "@" << " ";
-            } else if (d[j][i] == 2) {
                 cout << "#" << " ";
+            } else if (d[j][i] == 2) {
+                cout << "$" << " ";
             } else {
                 cout << "^" << " ";
             }
